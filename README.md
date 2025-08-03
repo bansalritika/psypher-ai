@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Of course. Here is a comprehensive README.md file for your project, including setup instructions and a section for demo user credentials.
 
-## Getting Started
+Tiered Events App
+This project is a Next.js application that demonstrates a tiered event access system. Users are assigned a membership tier (Free, Silver, Gold, or Platinum) and can only view events that correspond to their tier or a lower tier. The application uses Clerk for user authentication and Supabase for the event database.
 
-First, run the development server:
+🚀 Features
+Tier-Based Access: Events are fetched and displayed based on the user's membership tier.
 
-```bash
-npm run dev
+Authentication: Secure user sign-in and sign-up with Clerk.
+
+Tiered Content: Users can see locked events above their tier with an "Upgrade" message.
+
+Simulated Upgrade: A button to simulate upgrading a user's tier by updating their Clerk public metadata.
+
+Responsive UI: Built with Tailwind CSS for a clean and responsive design.
+
+🛠️ Tech Stack
+Framework: Next.js
+
+Authentication: Clerk
+
+Database: Supabase
+
+Styling: Tailwind CSS
+
+UI Components: Lucide-react for icons
+
+⚙️ Setup Instructions
+Follow these steps to get the project up and running on your local machine.
+
+Prerequisites
+Node.js (v18 or higher)
+
+npm or yarn
+
+A Clerk account
+
+A Supabase account
+
+1. Clone the Repository
+Bash
+
+git clone <your-repo-url>
+cd <your-project-folder>
+2. Install Dependencies
+Bash
+
+npm install
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+yarn install
+3. Configure Environment Variables
+Create a .env.local file in the root of your project and add the following keys.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+From Clerk:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: Your Clerk publishable key.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+CLERK_SECRET_KEY: Your Clerk secret key.
 
-## Learn More
+From Supabase:
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_SUPABASE_URL: Your Supabase project URL.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+NEXT_PUBLIC_SUPABASE_ANON_KEY: Your Supabase public "anon" key.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Your .env.local file should look like this:
 
-## Deploy on Vercel
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_..."
+CLERK_SECRET_KEY="sk_test_..."
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+NEXT_PUBLIC_SUPABASE_URL="https://your-project-id.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiI..."
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔑 Demo User Credentials
+Use the following credentials to test the tiered access system. You will need to create these users and set their metadata in your Clerk dashboard.
+
+Email	                     Password	       Tier	          Notes
+freeuser@example.com	     password	       free	       Can only see free events.
+silveruser@example.com	   password	      silver	     Can see free and silver events.
+golduser@example.com	     password     	gold	       Can see free, silver, and gold events.
+platinumuser@example.com	 password	    platinum	     Can see all events.
