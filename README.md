@@ -1,7 +1,9 @@
 **Tiered Events App**
+
 This project is a Next.js application that demonstrates a tiered event access system. Users are assigned a membership tier (Free, Silver, Gold, or Platinum) and can only view events that correspond to their tier or a lower tier. The application uses Clerk for user authentication and Supabase for the event database.
 
 **🚀 Features**
+
 Tier-Based Access: Events are fetched and displayed based on the user's membership tier.
 
 Authentication: Secure user sign-in and sign-up with Clerk.
@@ -24,9 +26,11 @@ Styling: Tailwind CSS
 UI Components: Lucide-react for icons
 
 **⚙️ Setup Instructions**
+
 Follow these steps to get the project up and running on your local machine.
 
 Prerequisites
+
 Node.js (v18 or higher)
 
 npm or yarn
@@ -36,14 +40,18 @@ A Clerk account
 A Supabase account
 
 **1. Clone the Repository**
+
 git clone <your-repo-url>
 cd <your-project-folder>
 
 **2. Install Dependencies**
+
 npm install
-# or
+or
 yarn install
-3. Configure Environment Variables
+
+**3. Configure Environment Variables**
+
 Create a .env.local file in the root of your project and add the following keys.
 
 **From Clerk:**
@@ -67,10 +75,14 @@ NEXT_PUBLIC_SUPABASE_URL="https://your-project-id.supabase.co"
 NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiI..."
 
 **🔑 Demo User Credentials**
+
 Use the following credentials to test the tiered access system. You will need to create these users and set their metadata in your Clerk dashboard.
 
 Email	                     Password	       Tier	          Notes
 freeuser@example.com	     password	       free	       Can only see free events.
+
 silveruser@example.com	   password	      silver	     Can see free and silver events.
+
 golduser@example.com	     password     	gold	       Can see free, silver, and gold events.
+
 platinumuser@example.com	 password	    platinum	     Can see all events.
