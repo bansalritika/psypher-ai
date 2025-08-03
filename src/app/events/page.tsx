@@ -11,8 +11,8 @@ const tierOrder = ['free', 'silver', 'gold', 'platinum'];
 
 export default function EventsPage() {
   const { user } = useUser();
-  const userTier = user?.publicMetadata?.tier || 'free'; 
-  const [events, setEvents] = useState<any[]>([]);
+  const userTier = (user?.publicMetadata?.tier as string) || 'free'; 
+  const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [allowedTiers, setAllowedTiers] = useState<string[]>([]); // ✅ New state
 
