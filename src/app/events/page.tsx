@@ -14,7 +14,6 @@ export default function EventsPage() {
   const userTier = (user?.publicMetadata?.tier as string) || 'free'; 
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
-  const [allowedTiers, setAllowedTiers] = useState<string[]>([]); // ✅ New state
 
   const fetchEvents = async (userTier: string) => {
   console.log("✅ fetchEvents() called with tier:", userTier);
@@ -23,7 +22,6 @@ export default function EventsPage() {
 
   const allowed = tierOrder.slice(0, tierOrder.indexOf(userTier) + 1);
   console.log("Allowed Tiers:", allowed);
-  setAllowedTiers(allowed); // 👈 save to state
 
  const { data, error } = await supabase
   .from('events')
@@ -32,9 +30,8 @@ export default function EventsPage() {
 
 
   if (error) {
-    console.error("❌ Supabase error:", error.message);
+    console.error("Supabase error:", error.message);
   } else {
-    console.log("✅ Setting events:", data);
     setEvents(data ?? []);
   }
 
@@ -49,7 +46,6 @@ useEffect(() => {
     // Handle signed out state explicitly if needed
     setLoading(false);
     setEvents([]);
-    setAllowedTiers([]);
   }
 }, [user?.publicMetadata?.tier, user]); // Added 'user'
 
