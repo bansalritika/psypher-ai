@@ -2,6 +2,7 @@
 import React from 'react';
 import { Badge } from '@/components/ui/badge'; 
 import Image from 'next/image';
+import { Event } from '@/types/index'; 
 
 const tierColors: Record<string, string> = {
   free: 'bg-purple-200 text-purple-800',
@@ -16,7 +17,7 @@ export default function EventCard({
   userTier,
   tierOrder,
 }: {
-  event: any;
+  event: Event;
   userTier: string;
   tierOrder: string[];
 }) {
