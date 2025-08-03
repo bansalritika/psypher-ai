@@ -78,12 +78,12 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiI..."
 
 Use the following credentials to test the tiered access system. You will need to create these users and set their metadata in your Clerk dashboard.
 
-Email	                     Password	       Tier	          Notes
+Email	                     Password	           Tier	          Notes
 
-freeuser@example.com	     password	       free	       Can only see free events.
+freeuser@example.com	     freeuser@12	      free	       Can only see free events.
 
-silveruser@example.com	   password	      silver	     Can see free and silver events.
+silveruser@example.com	   silveruser@12	    silver	     Can see free and silver events.
 
-golduser@example.com	     password     	gold	       Can see free, silver, and gold events.
+golduser@example.com	     golduser@12     	  gold	       Can see free, silver, and gold events.
 
-platinumuser@example.com	 password	    platinum	     Can see all events.
+platinumuser@example.com	 platinumuser@12	  platinum	     Can see all events.
