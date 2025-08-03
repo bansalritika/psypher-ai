@@ -1,6 +1,7 @@
 // src/components/EventCard.tsx
 import React from 'react';
-import { Badge } from '@/components/ui/badge'; // or create your own badge styles
+import { Badge } from '@/components/ui/badge'; 
+import Image from 'next/image';
 
 const tierColors: Record<string, string> = {
   free: 'bg-purple-200 text-purple-800',
@@ -44,9 +45,11 @@ export default function EventCard({
           </a>
         </div>
       )}
-      <img
+      <Image // 👈 Replace <img> with <Image>
         src={event.image_url || 'https://via.placeholder.com/400x200.png?text=Event+Image'}
         alt={event.title}
+        width={400} 
+        height={200}
         className="w-full h-48 object-cover"
       />
       <div className={`p-4 space-y-2 ${isLocked ? 'opacity-20' : ''}`}>

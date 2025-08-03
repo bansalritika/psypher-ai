@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 import EventCard from '@/components/EventCard';
 import { Loader2 } from 'lucide-react';
 import UpgradeButton from '@/components/UpgradeButton';
+import { Event } from '@/types/index'; 
 
 const tierOrder = ['free', 'silver', 'gold', 'platinum'];
 
