@@ -1,54 +1,50 @@
+// src/app/events/page.tsx
 'use client';
 import { useUser, SignedIn, SignedOut } from '@clerk/nextjs';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import EventCard from '@/components/EventCard';
 import { Loader2 } from 'lucide-react';
+import { Event } from '@/types/index';
 import UpgradeButton from '@/components/UpgradeButton';
-import { Event } from '@/types/index'; 
 
 const tierOrder = ['free', 'silver', 'gold', 'platinum'];
 
 export default function EventsPage() {
   const { user } = useUser();
   const userTier = (user?.publicMetadata?.tier as string) || 'free'; 
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<Event[]>([]); 
   const [loading, setLoading] = useState(true);
-
-  const fetchEvents = async (userTier: string) => {
-  console.log("✅ fetchEvents() called with tier:", userTier);
-
-  if (!tierOrder.includes(userTier)) return;
-
-  const allowed = tierOrder.slice(0, tierOrder.indexOf(userTier) + 1);
-  console.log("Allowed Tiers:", allowed);
-
- const { data, error } = await supabase
-  .from('events')
-  .select('id, title, description, event_date, image_url, tier');
   
+  const fetchEvents = async (userTier: string) => {
+    console.log("✅ fetchEvents() called with tier:", userTier);
 
+    if (!tierOrder.includes(userTier)) return;
 
-  if (error) {
-    console.error("Supabase error:", error.message);
-  } else {
-    setEvents(data ?? []);
-  }
-
-  setLoading(false);
-};
-
-useEffect(() => {
-  console.log("👤 user tier in useEffect:", user?.publicMetadata?.tier);
-  if (user && user.publicMetadata?.tier) {
-    fetchEvents(user.publicMetadata.tier as string);
-  } else if (user === null) {
-    // Handle signed out state explicitly if needed
+    const allowed = tierOrder.slice(0, tierOrder.indexOf(userTier) + 1);
+    console.log("Allowed Tiers:", allowed);
+    
+    const { data, error } = await supabase
+      .from('events')
+      .select('id, title, description, event_date, image_url, tier');
+    
+    if (error) {
+      console.error("❌ Supabase error:", error.message);
+    } else {
+      setEvents(data ?? []); 
+    }
     setLoading(false);
-    setEvents([]);
-  }
-}, [user?.publicMetadata?.tier, user]); // Added 'user'
+  };
 
+  useEffect(() => {
+    console.log("👤 user tier in useEffect:", user?.publicMetadata?.tier);
+    if (user && user.publicMetadata?.tier) {
+      fetchEvents(user.publicMetadata.tier as string);
+    } else if (user === null) {
+      setLoading(false);
+      setEvents([]);
+    }
+  }, [user?.publicMetadata?.tier, user]);
 
   console.log("🔄 Rendered EventsPage. Events length:", events.length);
 
@@ -65,8 +61,8 @@ useEffect(() => {
           <h1 className="text-4xl font-bold text-center text-purple-800 mb-10">
             Explore Your Tier Events
           </h1>
- <UpgradeButton />
-         {loading ? (
+          <UpgradeButton />
+          {loading ? (
             <div className="flex justify-center items-center py-20">
               <Loader2 className="animate-spin h-10 w-10 text-purple-600" />
             </div>
@@ -76,18 +72,17 @@ useEffect(() => {
                 <p className="col-span-full text-center text-gray-600">No events found.</p>
               ) : (
                 events
-                  // We sort the events by tier so locked events appear last
                   .sort((a, b) => tierOrder.indexOf(a.tier) - tierOrder.indexOf(b.tier))
                   .map((event) => (
                     <EventCard
                       key={event.id}
                       event={event}
-                      userTier={userTier as string} 
-                      tierOrder={tierOrder} 
+                      userTier={userTier} 
+                      tierOrder={tierOrder}
                     />
                   ))
               )}
-                 </div>
+            </div>
           )}
         </section>
       </SignedIn>

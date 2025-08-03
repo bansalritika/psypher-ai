@@ -1,7 +1,7 @@
 // src/components/EventCard.tsx
 import React from 'react';
 import Image from 'next/image';
-import { Event } from '@/types/index'; 
+import { Event } from '@/types/index';
 
 const tierColors: Record<string, string> = {
   free: 'bg-purple-200 text-purple-800',
@@ -10,7 +10,6 @@ const tierColors: Record<string, string> = {
   platinum: 'bg-blue-200 text-blue-800',
 };
 
-// Update the props to include userTier and tierOrder
 export default function EventCard({
   event,
   userTier,
@@ -22,9 +21,8 @@ export default function EventCard({
 }) {
   const userTierIndex = tierOrder.indexOf(userTier);
   const eventTierIndex = tierOrder.indexOf(event.tier);
-
   const isLocked = eventTierIndex > userTierIndex;
-
+  
   const getTierColor = (tier: string) => {
     return tierColors[tier] || 'bg-gray-200 text-gray-800';
   };
@@ -45,7 +43,7 @@ export default function EventCard({
           </a>
         </div>
       )}
-      <Image // 👈 Replace <img> with <Image>
+      <Image
         src={event.image_url || 'https://via.placeholder.com/400x200.png?text=Event+Image'}
         alt={event.title}
         width={400} 
