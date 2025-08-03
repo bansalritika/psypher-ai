@@ -1,6 +1,5 @@
 // src/components/EventCard.tsx
 import React from 'react';
-import { Badge } from '@/components/ui/badge'; 
 import Image from 'next/image';
 import { Event } from '@/types/index'; 
 
@@ -39,7 +38,7 @@ export default function EventCard({
             Upgrade to <span className="font-bold capitalize">{event.tier}</span> to access this event.
           </p>
           <a
-            href="/upgrade" // 👈 Change this to your upgrade/pricing page URL
+            href="/upgrade" 
             className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition"
           >
             Upgrade Now
