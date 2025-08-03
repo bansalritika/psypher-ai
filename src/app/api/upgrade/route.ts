@@ -1,8 +1,9 @@
 // src/app/api/upgrade/route.ts
 import { clerkClient } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server'; // 👈 Import NextRequest
 
-export async function POST(req) {
+// Type the 'req' parameter as NextRequest
+export async function POST(req: NextRequest) {
   try {
     const { userId, newTier } = await req.json();
 
@@ -12,7 +13,6 @@ export async function POST(req) {
 
     const client = await clerkClient();
 
-    // This updates the publicMetadata from the backend, which is allowed
     await client.users.updateUserMetadata(userId, {
       publicMetadata: {
         tier: newTier,
